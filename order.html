@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 정보 입력</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* order.html 전용 스타일 */
+        .order-container { display: flex; gap: 30px; padding: 30px; max-width: 1000px; margin: auto; }
+        .order-pizza-preview { text-align: center; }
+        .order-pizza-preview img { max-width: 400px; border: 2px solid var(--border-color); border-radius: 50%; }
+        .order-summary, .order-form { flex: 1; }
+        .order-form form { display: flex; flex-direction: column; gap: 15px; }
+        .order-form input { padding: 10px; border: 1px solid var(--border-color); border-radius: 5px; }
+        .order-form button { padding: 15px; background-color: #4caf50; color: white; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header><div class="logo">🍕 주문 정보 입력</div></header>
+    <main class="order-container">
+        <div class="panel order-pizza-preview">
+            <h2>주문 피자 확인</h2>
+            <div id="pizza-list-container" style="max-height: 400px; overflow-y: auto;"></div>
+        </div>
+        <div class="panel">
+            <div class="order-summary">
+                <h2>최종 주문 요약</h2>
+                <h3>총 가격: <span id="final-total-price"></span></h3>
+            </div>
+            <hr>
+            <div class="order-form">
+                <h2>배달 정보</h2>
+                <form id="delivery-form">
+                    <input type="text" id="customer-name" placeholder="이름" required>
+                    <input type="text" id="customer-address" placeholder="주소" required>
+                    <input type="tel" id="customer-phone" placeholder="연락처">
+                    <button type="submit">주문 완료</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="order.js"></script>
+</body>
+</html>

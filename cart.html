@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cart-container { max-width: 1000px; margin: auto; padding: 20px; }
+        .cart-item { display: flex; gap: 20px; align-items: center; background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        .cart-item img { width: 100px; border-radius: 50%; }
+        .cart-item-details { flex-grow: 1; }
+        .cart-item-delete { padding: 8px 12px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .cart-summary { margin-top: 30px; text-align: right; }
+        .cart-actions { display: flex; justify-content: space-between; margin-top: 20px; }
+        .cart-actions a { padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; }
+        .btn-add-more { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-checkout { background: #4caf50; color: white; }
+    </style>
+</head>
+<body>
+    <header><div class="logo">🛒 장바구니</div></header>
+    <main class="cart-container">
+        <h1>내 피자 목록</h1>
+        <div id="cart-items-container"></div>
+        <div class="cart-summary">
+            <h2>총 주문금액: <span id="total-cart-price">₩0</span></h2>
+        </div>
+        <div class="cart-actions">
+            <a href="index.html" class="btn-add-more">피자 추가하기</a>
+            <a href="order.html" id="checkout-button" class="btn-checkout">주문하기</a>
+        </div>
+    </main>
+    <script src="cart.js"></script>
+</body>
+</html>

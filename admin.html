@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container { max-width: 1200px; margin: auto; padding: 20px; }
+        .admin-actions { margin-bottom: 20px; }
+        /* '모든 주문 삭제' 버튼 스타일 */
+        .btn-danger {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .order-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; padding: 20px; display: flex; gap: 20px; }
+        .order-card-pizza img { width: 150px; border-radius: 50%; }
+        .order-card-customer { border-left: 1px solid #eee; padding-left: 20px; }
+        .order-card-actions { margin-top: auto; }
+        /* '주문 거부' 버튼 스타일 */
+        .btn-reject {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header><div class="logo">👑 사장님 주문 관리 페이지</div></header>
+    <main class="admin-container">
+        <h1>접수된 주문 목록</h1>
+        <div class="admin-actions">
+            <button id="clear-orders-button" class="btn-danger">모든 주문 삭제하기</button>
+        </div>
+        <div id="order-list-container">
+            </div>
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

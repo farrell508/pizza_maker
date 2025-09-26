@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Maker Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🍕 Pizza Maker Studio</div>
+        <nav>
+            <a href="cart.html" class="cart-icon">
+                🛒
+                <span id="cart-count">0</span>
+            </a>
+            <a href="cart.html" class="btn-order" style="text-decoration: none;">주문하기</a>
+            <button class="btn-login">로그인</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <aside class="panel ingredients-panel">
+            <h2>기본 선택</h2>
+            <div class="base-selection">
+                <p>도우</p>
+                <div id="dough-options" class="options-group">
+                    <button class="option-btn active" data-dough="original">오리지널</button>
+                    <button class="option-btn" data-dough="thin">씬</button>
+                </div>
+                <p>소스</p>
+                <div id="sauce-options" class="options-group">
+                    <button class="option-btn active" data-sauce="tomato">토마토</button>
+                    <button class="option-btn" data-sauce="cream">소스 없음</button>
+                </div>
+                <p>기본 치즈</p>
+                <div id="base-cheese-options" class="options-group">
+                    <button class="option-btn active" data-cheese="mozzarella">모짜렐라</button>
+                    <button class="option-btn" data-cheese="none">치즈 없음</button>
+                </div>
+            </div>
+            <hr>
+            <h2>토핑 선택</h2>
+            <div class="tabs">
+                <button class="tab active">고기</button>
+                <button class="tab">야채</button>
+                <button class="tab">치즈</button>
+            </div>
+            <div id="ingredients-grid" class="ingredients-grid">
+                </div>
+            <p class="tooltip">💡 팁: 토핑을 선택하고 피자 위에 클릭하세요!</p>
+        </aside>
+
+        <section class="panel pizza-canvas-panel">
+            <h2>나만의 피자</h2>
+            <canvas id="pizza-canvas" width="450" height="450"></canvas>
+            <div class="canvas-options">
+                <div class="size-options">
+                    <span>크기:</span>
+                    <button class="size-btn active" data-size="Small">Small</button>
+                    <button class="size-btn" data-size="Medium">Medium</button>
+                    <button class="size-btn" data-size="Large">Large</button>
+                </div>
+                <div class="guide-toggle">
+                    <input type="checkbox" id="symmetry-guide-toggle">
+                    <label for="symmetry-guide-toggle">대칭 가이드</label>
+                </div>
+            </div>
+        </section>
+
+        <aside class="panel summary-panel">
+            <h2>주문 요약</h2>
+            <div class="summary-content">
+                <p><strong>커스텀 피자</strong></p>
+                <div class="summary-details">
+                    <p><strong>베이스:</strong></p>
+                    <ul id="summary-base-list">
+                        </ul>
+                    <p><strong>토핑:</strong></p>
+                    <ul id="summary-toppings-list">
+                        <li>항목 없음</li>
+                    </ul>
+                    <p><strong>크기:</strong> <span id="summary-size">Small</span></p>
+                </div>
+                <hr>
+                <div class="summary-total">
+                    <h3>총 가격: <span id="total-price">₩0</span></h3>
+                </div>
+            </div>
+            <div class="summary-actions">
+                <button class="btn-add-cart">장바구니에 추가</button>
+                <button id="reset-button" class="btn-reset">다시 만들기</button>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
