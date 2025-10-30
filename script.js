@@ -275,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawPizza(); 
     });
     
+    // 토핑 추가 (왼쪽 클릭)
     canvas.addEventListener('click', e => { 
         if (!activeToppingId) return; 
         const allToppings = [].concat(...Object.values(toppingData)); 
@@ -304,6 +305,33 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     });
     
+    // 토핑 삭제 (우클릭)
+    canvas.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        
+        const rect = canvas.getBoundingClientRect(); 
+        const x = e.clientX - rect.left; 
+        const y = e.clientY - rect.top; 
+        
+        // 클릭 위치에서 가장 가까운 토핑 찾기
+        let minDistance = Infinity;
+        let closestIndex = -1;
+        
+        placedToppings.forEach((topping, index) => {
+            const distance = Math.sqrt((x - topping.x)**2 + (y - topping.y)**2);
+            if (distance < topping.size && distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+            }
+        });
+        
+        if (closestIndex !== -1) {
+            placedToppings.splice(closestIndex, 1);
+            drawPizza();
+            updateSummary();
+        }
+    });
+    
     tabs.forEach(tab => { 
         tab.addEventListener('click', () => { 
             tabs.forEach(t => t.classList.remove('active')); 
@@ -316,9 +344,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     sizeBtns.forEach(btn => { 
         btn.addEventListener('click', () => { 
+            const oldSize = currentState.size;
+            const newSize = btn.dataset.size;
+            
+            if (oldSize !== newSize) {
+                const oldRadius = pizzaSizes[oldSize];
+                const newRadius = pizzaSizes[newSize];
+                const scaleFactor = newRadius / oldRadius;
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                // 모든 토핑의 위치를 새 크기에 맞게 조정
+                placedToppings.forEach(topping => {
+                    const relX = topping.x - centerX;
+                    const relY = topping.y - centerY;
+                    topping.x = centerX + (relX * scaleFactor);
+                    topping.y = centerY + (relY * scaleFactor);
+                });
+            }
+            
             sizeBtns.forEach(b => b.classList.remove('active')); 
             btn.classList.add('active'); 
-            currentState.size = btn.dataset.size; 
+            currentState.size = newSize; 
             drawPizza(); 
             updateSummary(); 
         }); 
